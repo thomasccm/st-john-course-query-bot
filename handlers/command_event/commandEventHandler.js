@@ -26,6 +26,7 @@ class CommandEventHandler {
       this.botUsername
     );
     commandConstructor.newCommand("start", query);
+    commandConstructor.newCommand("help", getHelp);
   }
 }
 
@@ -111,11 +112,16 @@ async function query(ctx) {
   });
   // logger.debug(courseList);
 
+  const extra = {
+    parse_mode: 'HTML', 
+    disable_web_page_preview: true,
+  };
   // form message body
   var msg = '';
   if (courseList.length) {
     courseList.forEach((couese, index) => {
-      msg += `分類: ${couese.courseCategory}\n`
+      msg += `#${index+1}\n`
+        + `分類: ${couese.courseCategory}\n`
         + `課程編號: ${couese.courseCode}\n`
         + `剩餘名額: ${couese.vacancy}\n`
         + `上課日期: ${couese.courseDate} \(${couese.courseWeekday}\) \n`
@@ -130,20 +136,34 @@ async function query(ctx) {
         : `\n—————————————————————————\n`
         + `搵到 ${courseList.length} 班, ${hasVacancy} 班有位\n`
         + `\n完`;
+      if ((index + 1)%10 == 0 && index != courseList.length - 1) {
+        // send message back
+        ctx.telegram.sendMessage(chatId, msg, extra);
+        msg = '';
+      }
     });
   } else {
     msg = '冇班既';
   }
 
   // send message back
-  const extra = {
-    parse_mode: 'HTML', 
-    disable_web_page_preview: true,
-  };
   ctx.telegram.sendMessage(chatId, msg, extra).then(resp => {
     // logger.debug(JSON.stringify(payload));
     setTimeout(function() {
       ctx.telegram.sendMessage(chatId, `得閒再撳下 /start 查過啦, 收線!`, extra)
     }, 750);
   });
+}
+
+function getHelp(ctx) {
+  if (!isPrivateChat) {
+    return;
+  }
+
+  var chatId = ctx.message.from.id;
+
+  var msg = '- /start 查St. John一日重溫課程';
+  msg += '\n- /help 使用方法';
+
+  ctx.telegram.sendMessage(chatId, msg);
 }
