@@ -1,6 +1,6 @@
-# st-john-course-renew-bot
+# st-john-course-query-bot
 
-A simple Telegram bot used to retrieve St John one day renew course (ODRC) data.
+A simple Telegram bot used to retrieve St John one day renew course (ODRC) data. You can start using it by searching [@StJohnRenewQueryBot](https://t.me/StJohnRenewQueryBot) on Telegram.
 
 ## Installation
 
@@ -8,8 +8,8 @@ A simple Telegram bot used to retrieve St John one day renew course (ODRC) data.
 
 2. Run following command
 
-		$ git clone https://bitbucket.org/makeitrun/st-john-course-renew-bot.git # or clone your own fork
-		$ cd st-john-course-renew-bot
+		$ git clone https://github.com/thomasccm/st-john-course-query-bot.git # or clone your own fork
+		$ cd st-john-course-query-bot
 		$ npm install
 	
 3. Create your .env file by running following command, and customize your own version
