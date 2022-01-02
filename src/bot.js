@@ -2,11 +2,11 @@ const Telegraf = require("telegraf");
 const commandParts = require("telegraf-command-parts");
 const ENV = process.env.APP_ENV;
 const root = process.cwd();
-const ChatEventResponse = require(`${root}/handlers/chat_event/chat_event`);
+const ChatEventResponse = require(`${root}/src/handlers/chat_event/chat_event`);
 const {
   CommandEventHandler,
-} = require(`${root}/handlers/command_event/commandEventHandler`);
-const logger = require(`${root}/util/logger`)();
+} = require(`${root}/src/handlers/command_event/commandEventHandler`);
+const logger = require(`${root}/src/util/logger`)();
 
 module.exports = function (BOT_API_TOKEN, URL, PORT) {
   // Initialise the bot

@@ -1,11 +1,11 @@
 var path = require("path");
 const root = process.cwd();
-const language = require(`${root}/language/`);
+const language = require(`${root}/src/language/`);
 
 var langData = {};
 for (var key in language) {
   if (language.hasOwnProperty(key)) {
-    var mod = require(path.join(`${root}/language/`, language[key]));
+    var mod = require(path.join(`${root}/src/language/`, language[key]));
     if (mod instanceof Function) {
       language[key][mod.name] = mod;
     } else {

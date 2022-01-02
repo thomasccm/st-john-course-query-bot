@@ -1,5 +1,5 @@
 const root = process.cwd();
-const logger = require(`${root}/util/logger`)();
+const logger = require(`${root}/src/util/logger`)();
 
 module.exports = {
   // consider these are public function, and calling the private function of this file
