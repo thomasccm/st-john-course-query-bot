@@ -61,5 +61,5 @@ async function setupHandlers(bot) {
     return botInfo.username;
   });
   new CommandEventHandler(bot, botUsername); // set up command handler
-  ChatEventResponse.main(bot); // set up chat event handler
+  // ChatEventResponse.main(bot); // set up chat event handler
 }
